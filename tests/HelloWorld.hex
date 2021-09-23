@@ -1,0 +1,14 @@
+GBL
+wait 9
+mouse add cheese # feed the mouse cheese to prevent Out of Cheese Error
+wait 5
+message set hello # set message to 'hello'
+message add  world! # add ' world!' to message
+wait 0.5
+message # add the message var to the temp storage
+oldmsg set previous # set oldmsg to the temp storage
+wait 1
+oldmsg
+Goodbye! # echo the 'Goodbye!' string and add it to temp storage
+say I don't know why you say goodbye, I say hello # print the line from the The Beatles' song
+BRL
