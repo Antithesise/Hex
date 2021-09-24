@@ -1,8 +1,21 @@
-from threading_print import print
+from random import choice, randint
+from functools import lru_cache
 
+# Typing
+from typing import Union
+
+# System checks
+from Checks import check
+check()
+
+# Hex imports
+from threading_print import print
+from Htime import sleep
+
+
+# Definitions
 class fish:
 	def __init__(self, bg):
-		from random import choice, randint
 		self.x = randint(0, 119)
 		self.y = randint(0, 26)
 		self.z = (randint(0, 1) * 2) - 1
@@ -36,8 +49,6 @@ class fish:
 			return ""
 
 class Aquarium:
-	from functools import lru_cache
-
 	@lru_cache(maxsize=120)
 	def __init__(self, x, y):
 		from random import choice, shuffle, randint
@@ -102,10 +113,10 @@ class Aquarium:
 		)
 
 
+# Runtime
 if __name__ == "__main__":
-	from time import sleep
-
 	a = Aquarium(0, 0)
+
 	while True:
 		a()
 		sleep(0.2)

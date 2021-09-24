@@ -1,6 +1,8 @@
 from typing import Iterable, Callable, Mapping, Tuple
 from threading_print import print
 
+
+# Definitions
 class errors():
 	def __init__(self, d: dict[str, str], lines: str) -> dict:
 		"""
@@ -32,3 +34,6 @@ class errors():
 	def __call__(self, err: str, lineno: int, end: str="\n"):
 		print(f"\u001b[31mError on line {lineno}: {self.lines[lineno]}", end=end)
 		return self.e[err](end)
+
+
+# Runtime

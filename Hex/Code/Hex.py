@@ -4,15 +4,13 @@ from threading import Thread
 from os import system
 
 # Typing
-from Typing import 
+from typing import Union
 
 # System checks
-
 from Checks import check
 check(errs=e, args=argv)
 
 # Hex Imports
-
 from UnrealTimeClock import UnrealTimeClock
 from threading_print import print
 from Aquarium import Aquarium
@@ -20,7 +18,6 @@ from Htime import time, sleep
 from Errors import errors
 
 # Variables
-
 global start, variable, beehive, lines, lineindex, maxlines, e
 
 with open(argv[1], "r") as iohexfile:
@@ -52,8 +49,8 @@ lines = []
 lineindex = 0
 maxlines = 18
 
-# Classes
 
+# Definitions
 class Beehive():
 	def __init__(self, beehive):
 		self.path = beehive
@@ -74,8 +71,6 @@ class Beehive():
 
 	def get(self, key):
 		return self.beedict[key]
-
-# Functions
 
 def addline(line, newline=True):
 	global lines
@@ -101,7 +96,6 @@ def delansi(string):
 
 	return compile(r"(\x9B|\x1B\[)[0-?]*[ -\/]*[@-~]").sub("", string)
 # /\ https://www.tutorialspoint.com/How-can-I-remove-the-ANSI-escape-sequences-from-a-string-in-python /\
-
 def aquarium(func):
 	global lines, maxlines
 
@@ -261,8 +255,8 @@ def Main(rawhexfile):
 			print("\u001b[31mError on line %s: %s" % (no, rawhexfile[no]))
 			raise e
 
-# runtime
 
+# Runtime
 if __name__ != "__main__":
 	beehive = Beehive(dirname(realpath(__file__)) + "/.beehive")
 

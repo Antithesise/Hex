@@ -1,5 +1,17 @@
 from threading import Lock
-import sys
+from sys import stdout
+
+# Typing
+from typing import TextIO
+
+# System checks
+from Checks import check
+check()
+
+
+# Definitions
+class sys:
+	stdout: TextIO = stdout
 
 lock = Lock()
 
@@ -18,3 +30,6 @@ def print(*values, sep=' ', end='\n', file=sys.stdout, flush=False) -> str:
 			file.flush()
 	
 	return str(sep).join([str(v) for v in values]) + str(end)
+
+
+# Runtime

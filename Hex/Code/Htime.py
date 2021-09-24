@@ -1,20 +1,22 @@
-from time import time 
+from time import time, sleep as wait
 
 # Typing
-
 from typing import NamedTuple
 
-# Hex imports
+# System checks
+from Checks import check
+check()
 
+# Hex imports
 from threading_print import print
 
+
+# Definitions
 def sleep(secs: float) -> None:
 	"""
 	sleep(seconds)
 	Delay execution for a given number of seconds. The argument may be a floating point number for subsecond precision.
 	"""
-
-	from time import sleep as wait
 
 	wait(secs)
 
@@ -50,10 +52,17 @@ YN = {
 	2021: "Beleaguered Badger",
 }
 
-class struct_time:
-	def __new__(self, tm_year, tm_mon, tm_mday, tm_hour, tm_min, tm_sec, tm_wday, tm_yday, tm_isdst, tm_zone, tm_gmtoff):
-		self = NamedTuple("struct_time", ["tm_year", "tm_mon", "tm_mday", "tm_hour", "tm_sec", "tm_wday", "tm_yday", "tm_isdst"])(tm_year=tm_year, tm_mon=tm_mon, tm_mday=tm_mday, tm_hour=tm_hour, tm_sec=tm_sec, tm_wday=tm_wday, tm_yday=tm_wday, tm_isdst=tm_isdst).__class__
-		return NamedTuple("struct_time", ["tm_year", "tm_mon", "tm_mday", "tm_hour", "tm_sec", "tm_wday", "tm_yday", "tm_isdst"])(tm_year=tm_year, tm_mon=tm_mon, tm_mday=tm_mday, tm_hour=tm_hour, tm_sec=tm_sec, tm_wday=tm_wday, tm_yday=tm_wday, tm_isdst=tm_isdst)
+class struct_time(NamedTuple):
+	tm_year: int
+	tm_mon: int
+	tm_mday: int
+	tm_hour: int
+	tm_sec: int
+	tm_wday: int
+	tm_yday: int
+	tm_isdst: int
+	tm_zone: str
+	tm_gmtoff: int
 
 def localtime():
 	pass
@@ -64,5 +73,7 @@ def asctime(t=None):
 def htime(secs=None):
 	S = secs if secs else time()
 
+
+# Runtime
 if __name__ == "__main__":
 	print(struct_time(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0))
