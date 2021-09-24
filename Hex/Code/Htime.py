@@ -1,5 +1,11 @@
 from time import time 
 
+# Typing
+
+from typing import NamedTuple
+
+# Hex imports
+
 from threading_print import print
 
 def sleep(secs: float) -> None:
@@ -46,9 +52,8 @@ YN = {
 
 class struct_time:
 	def __new__(self, tm_year, tm_mon, tm_mday, tm_hour, tm_min, tm_sec, tm_wday, tm_yday, tm_isdst, tm_zone, tm_gmtoff):
-		from collections import namedtuple
-		self = namedtuple("struct_time", ["tm_year", "tm_mon", "tm_mday", "tm_hour", "tm_sec", "tm_wday", "tm_yday", "tm_isdst"])(tm_year=tm_year, tm_mon=tm_mon, tm_mday=tm_mday, tm_hour=tm_hour, tm_sec=tm_sec, tm_wday=tm_wday, tm_yday=tm_wday, tm_isdst=tm_isdst).__class__
-		return namedtuple("struct_time", ["tm_year", "tm_mon", "tm_mday", "tm_hour", "tm_sec", "tm_wday", "tm_yday", "tm_isdst"])(tm_year=tm_year, tm_mon=tm_mon, tm_mday=tm_mday, tm_hour=tm_hour, tm_sec=tm_sec, tm_wday=tm_wday, tm_yday=tm_wday, tm_isdst=tm_isdst)
+		self = NamedTuple("struct_time", ["tm_year", "tm_mon", "tm_mday", "tm_hour", "tm_sec", "tm_wday", "tm_yday", "tm_isdst"])(tm_year=tm_year, tm_mon=tm_mon, tm_mday=tm_mday, tm_hour=tm_hour, tm_sec=tm_sec, tm_wday=tm_wday, tm_yday=tm_wday, tm_isdst=tm_isdst).__class__
+		return NamedTuple("struct_time", ["tm_year", "tm_mon", "tm_mday", "tm_hour", "tm_sec", "tm_wday", "tm_yday", "tm_isdst"])(tm_year=tm_year, tm_mon=tm_mon, tm_mday=tm_mday, tm_hour=tm_hour, tm_sec=tm_sec, tm_wday=tm_wday, tm_yday=tm_wday, tm_isdst=tm_isdst)
 
 def localtime():
 	pass

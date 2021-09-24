@@ -1,13 +1,58 @@
-from UnrealTimeClock import UnrealTimeClock
 from os.path import dirname, isfile, realpath
-from threading_print import print
 from sys import argv, platform
-from Aquarium import Aquarium
-from Htime import time, sleep
 from threading import Thread
-from Errors import errors
 from os import system
 
+# Typing
+from Typing import 
+
+# System checks
+
+from Checks import check
+check(errs=e, args=argv)
+
+# Hex Imports
+
+from UnrealTimeClock import UnrealTimeClock
+from threading_print import print
+from Aquarium import Aquarium
+from Htime import time, sleep
+from Errors import errors
+
+# Variables
+
+global start, variable, beehive, lines, lineindex, maxlines, e
+
+with open(argv[1], "r") as iohexfile:
+	rawhexfile = [line for line in iohexfile.readlines()]
+
+e = errors({
+	"!": "+++!!!!!+++", # Exception
+	"?": "+++?????+++", # Warning
+	"Address": "+++ Error At Address: 14, Treacle Mine Road, Ankh-Morpork +++ Please Reinstall Universe And Reboot", # LookupError/KeyError/FileNotFoundError/FileExistsError/ModuleNotFoundError
+	"Cheese": "+++ Out Of Cheese Error +++ Redo From Start", # TimeoutError/MemoryError
+	"Soon":"+++ Cominge Soon To A Pt Nr. You +++ Request Banged Grains And Install When Cooked", # NotImplementedError
+	"Cucumber": "+++ Divide By Cucumber Error +++ Please Reinstall Universe And Reboot", # ZeroDivisionError
+	"Data": "+++ Insufficient Data +++ Redo From Start", # TypeError
+	"Domain": "+++ Eternal Domain Error +++ Redo From Start", # OSError
+	"Jelly": "+++ Mr. Jelly! Mr. Jelly! +++ Redo From Start", # SystemError
+	"Melon": "+++ MELON MELON MELON +++ Redo From Start", # ValueError/NameError
+	"Mine": "\nMine! Waah!", # FileNotFoundError (.FTB only)
+	"Mum": "+++ Hi Mum Is Testing +++ Redo From Start", # SyntaxError
+	"One": "+++ Oneoneoneoneoneone +++ Redo From Start", # ArithmeticError
+	"Shrimp": "+++ Millenium Hand And Shrimp +++ Evaluation Interrupted", # KeyboardInterrupt
+	"Temp": "+++ Empty Temp Error +++ Redo From Start", # ReferenceError
+	"Whoops": "+++ Whoops! Here Comes the Cheese! +++ Redo From Start", # BufferError
+	"TTY": "+++ Invalid Processing Dimension +++ Please Change Current Universe And Reboot", # Platform doesn't support TTY
+}, rawhexfile)
+
+start = time()
+variables = {}
+lines = []
+lineindex = 0
+maxlines = 18
+
+# Classes
 
 class Beehive():
 	def __init__(self, beehive):
@@ -30,36 +75,7 @@ class Beehive():
 	def get(self, key):
 		return self.beedict[key]
 
-with open(argv[1], "r") as iohexfile:
-	rawhexfile = [line for line in iohexfile.readlines()]
-
-global start, variable, beehive, lines, lineindex, maxlines, e
-start = time()
-variables = {}
-beehive = Beehive(dirname(realpath(__file__)) + "/.beehive")
-lines = []
-lineindex = 0
-maxlines = 18
-e = errors({
-	"!": "+++!!!!!+++", # Exception
-	"?": "+++?????+++", # Warning
-	"Address": "+++ Error At Address: 14, Treacle Mine Road, Ankh-Morpork +++ Please Reinstall Universe And Reboot", # LookupError/KeyError
-	"Cheese": "+++ Out Of Cheese Error +++ Redo From Start", # TimeoutError/MemoryError
-	"Soon":"+++ Cominge Soon To A Pt Nr. You +++ Request Banged Grains And Install When Cooked", # NotImplementedError
-	"Cucumber": "+++ Divide By Cucumber Error +++ Please Reinstall Universe And Reboot", # ZeroDivisionError
-	"Data": "+++ Insufficient Data +++ Redo From Start", # TypeError
-	"Domain": "+++ Eternal Domain Error +++ Redo From Start", # OSError
-	"Jelly": "+++ Mr. Jelly! Mr. Jelly! +++ Redo From Start", # SystemError
-	"Melon": "+++ MELON MELON MELON +++ Redo From Start", # ValueError/NameError
-	"Mine": "\nMine! Waah!", # FileNotFoundError
-	"Mum": "+++ Hi Mum Is Testing +++ Redo From Start", # SyntaxError
-	"One": "+++ Oneoneoneoneoneone +++ Redo From Start", # ArithmeticError
-	"Shrimp": "+++ Millenium Hand And Shrimp +++ Evaluation Interrupted", # KeyboardInterrupt
-	"Temp": "+++ Empty Temp Error +++ Redo From Start", # ReferenceError
-	"Whoops": "+++ Whoops! Here Comes the Cheese! +++ Redo From Start", # BufferError
-}, rawhexfile)
-
-
+# Functions
 
 def addline(line, newline=True):
 	global lines
@@ -245,15 +261,20 @@ def Main(rawhexfile):
 			print("\u001b[31mError on line %s: %s" % (no, rawhexfile[no]))
 			raise e
 
-main = Thread(target=Main, args=[rawhexfile])
-main.start()
+# runtime
 
-Thread(target=UnrealTimeClock, args=[main.is_alive]).start()
-Thread(target=aquarium, args=[main.is_alive]).start()
-Thread(target=Parp, args=[main.is_alive]).start()
+if __name__ != "__main__":
+	beehive = Beehive(dirname(realpath(__file__)) + "/.beehive")
 
-while main.is_alive():
-	if time() - start > 10:
-		e["Cheese"]()
-	if isfile("./.FTB"):
-		e["Mine"]()
+	main = Thread(target=Main, args=[rawhexfile], daemon=True)
+	main.start()
+
+	Thread(target=UnrealTimeClock, args=[main.is_alive]).start()
+	Thread(target=aquarium, args=[main.is_alive]).start()
+	Thread(target=Parp, args=[main.is_alive]).start()
+
+	while main.is_alive():
+		if time() - start > 10:
+			e["Cheese"]()
+		if isfile("./.FTB"):
+			e["Mine"]()
