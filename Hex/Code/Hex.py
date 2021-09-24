@@ -30,7 +30,7 @@ lines = []
 lineindex = 0
 maxlines = 18
 
-e | rawhexfile # https://github.com/good-coder-bad-boy/Hex/blob/d3ca324d98909c1673a1cfa06af00c4109c19b69/Hex/Code/Errors.py#L34-L35
+e | rawhexfile # https://github.com/good-coder-bad-boy/Hex/blob/d7aebca0c74d22ad479d3fc34c47682e33009bc9/Hex/Code/Errors.py#L34-L37
 
 
 # Definitions
