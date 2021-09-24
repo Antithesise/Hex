@@ -1,4 +1,4 @@
-# from sys import argv # unneeded (https://github.com/good-coder-bad-boy/Hex/blob/d3ca324d98909c1673a1cfa06af00c4109c19b69/Hex/Code/Checks.py#L36-L36)
+# from sys import argv # unneeded (https://github.com/good-coder-bad-boy/Hex/blob/d7aebca0c74d22ad479d3fc34c47682e33009bc9/Hex/Code/Checks.py#L36-L36)
 
 # Hex Imports
 from Errors import defaults as e
