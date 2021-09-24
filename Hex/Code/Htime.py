@@ -3,13 +3,12 @@ from time import time, sleep as wait
 # Typing
 from typing import NamedTuple
 
-# System checks
-from Checks import check
-check()
-
 # Hex imports
 from threading_print import print
 
+# System checks
+from Checks import check
+check()
 
 # Definitions
 def sleep(secs: float) -> None:

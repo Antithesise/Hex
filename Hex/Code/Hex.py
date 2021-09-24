@@ -6,48 +6,31 @@ from os import system
 # Typing
 from typing import Union
 
-# System checks
-from Checks import check
-check(errs=e, args=argv)
-
 # Hex Imports
 from UnrealTimeClock import UnrealTimeClock
 from threading_print import print
 from Aquarium import Aquarium
 from Htime import time, sleep
-from Errors import errors
+from Errors import defaults as e
+
+# System checks
+from Checks import check
+check(errs=e, args=argv)
+
 
 # Variables
-global start, variable, beehive, lines, lineindex, maxlines, e
+global start, variable, beehive, lines, lineindex, maxlines
 
 with open(argv[1], "r") as iohexfile:
-	rawhexfile = [line for line in iohexfile.readlines()]
-
-e = errors({
-	"!": "+++!!!!!+++", # Exception
-	"?": "+++?????+++", # Warning
-	"Address": "+++ Error At Address: 14, Treacle Mine Road, Ankh-Morpork +++ Please Reinstall Universe And Reboot", # LookupError/KeyError/FileNotFoundError/FileExistsError/ModuleNotFoundError
-	"Cheese": "+++ Out Of Cheese Error +++ Redo From Start", # TimeoutError/MemoryError
-	"Soon":"+++ Cominge Soon To A Pt Nr. You +++ Request Banged Grains And Install When Cooked", # NotImplementedError
-	"Cucumber": "+++ Divide By Cucumber Error +++ Please Reinstall Universe And Reboot", # ZeroDivisionError
-	"Data": "+++ Insufficient Data +++ Redo From Start", # TypeError
-	"Domain": "+++ Eternal Domain Error +++ Redo From Start", # OSError
-	"Jelly": "+++ Mr. Jelly! Mr. Jelly! +++ Redo From Start", # SystemError
-	"Melon": "+++ MELON MELON MELON +++ Redo From Start", # ValueError/NameError
-	"Mine": "\nMine! Waah!", # FileNotFoundError (.FTB only)
-	"Mum": "+++ Hi Mum Is Testing +++ Redo From Start", # SyntaxError
-	"One": "+++ Oneoneoneoneoneone +++ Redo From Start", # ArithmeticError
-	"Shrimp": "+++ Millenium Hand And Shrimp +++ Evaluation Interrupted", # KeyboardInterrupt
-	"Temp": "+++ Empty Temp Error +++ Redo From Start", # ReferenceError
-	"Whoops": "+++ Whoops! Here Comes the Cheese! +++ Redo From Start", # BufferError
-	"TTY": "+++ Invalid Processing Dimension +++ Please Change Current Universe And Reboot", # Platform doesn't support TTY
-}, rawhexfile)
+	rawhexfile = iohexfile.readlines()
 
 start = time()
 variables = {}
 lines = []
 lineindex = 0
 maxlines = 18
+
+e | rawhexfile # https://github.com/good-coder-bad-boy/Hex/blob/d3ca324d98909c1673a1cfa06af00c4109c19b69/Hex/Code/Errors.py#L34-L35
 
 
 # Definitions

@@ -1,8 +1,12 @@
+# from sys import argv # unneeded (https://github.com/good-coder-bad-boy/Hex/blob/d3ca324d98909c1673a1cfa06af00c4109c19b69/Hex/Code/Checks.py#L36-L36)
+
+# Hex Imports
+from Errors import defaults as e
 
 
 # Definitions
 class check:
-    def __init__(self, errs: dict[str, function]):
+    def __init__(self, errs: dict[str, function] = e):
         self.errs = errs
 
         self.errs.update()
@@ -25,3 +29,8 @@ class check:
 
 
 # Runtime
+if __name__ == "__main__":
+    c = check()
+
+    c.tty()
+    # c.args(argv) # improbable that user will run this file via commandline
